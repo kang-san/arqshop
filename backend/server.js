@@ -11,7 +11,7 @@ const uploadRouter = require('./routers/uploadRouter.js') ;
 const cors = require("cors");
 
 dotenv.config({
-  path : "../.env.server"
+  path : "../.env"
 });
 
 const app = express();
