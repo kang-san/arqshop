@@ -6,7 +6,7 @@ const AWS = require('aws-sdk');
 
 const dotenv = require('dotenv')
 dotenv.config({
-  path : "../.env"
+  path : ".env"
 });
 
 
@@ -47,7 +47,7 @@ console.log("File uploase >>>>>>>>>>>>>>  "+ region)
 
 const storageS3 = multerS3({
   s3,
-  bucket: 'sol7zone',
+  bucket: bucket,
   acl: 'public-read',
   contentType: multerS3.AUTO_CONTENT_TYPE,
   key(req, file, cb){s3
