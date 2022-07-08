@@ -74,6 +74,8 @@ export default function ProductEditScreen(props) {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+  console.log(" getUserInfo >>>>  "+userInfo.token)
+
   const uploadFileHandler = async (e) => {
     // const file = e.target.files[0];
     // const bodyFormData = new FormData();
@@ -96,7 +98,6 @@ export default function ProductEditScreen(props) {
     //   setLoadingUpload(false);
     // }
 
-    // console.log(" getUserInfo >>>>  "+userInfo.token)
 
     const file = e.target.files[0];
     const formData = new FormData();
