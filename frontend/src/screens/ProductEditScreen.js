@@ -106,7 +106,7 @@ export default function ProductEditScreen(props) {
     console.log("파일 append")
     try {
       const {data} = await Axios({
-        url: `/api/uploads/s3`,
+        url: `/api/uploads`,
         method: 'POST',
         headers: {
           'Content-Type': 'multipart/form-data',
