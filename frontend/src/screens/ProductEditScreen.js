@@ -105,15 +105,23 @@ export default function ProductEditScreen(props) {
     // showLoading();
     console.log("파일 append")
     try {
+      // const {data} = await Axios({
+      //   url: `/api/uploads`,
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //     Authorization: `Bearer ${userInfo.token}`
+      //   },
+      //   data: formData,
+      // });
+
+
       const {data} = await Axios({
         url: `/api/uploads`,
-        method: 'POST',
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${userInfo.token}`
-        },
-        data: formData,
+        method: 'POST'
       });
+
+
       setImage(data);
       setLoadingUpload(false);
     } catch (error) {
