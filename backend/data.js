@@ -52,7 +52,7 @@ const data = {
       isAdmin: false,
       seller: {
         name: '최윤철',
-        logo: '/images/logo-arq.jpg',
+        logo: '/images/logo-arq2.jpg',
         description: '최윤철',
         rating: 4.5,
         numReviews: 120,
@@ -107,7 +107,7 @@ const data = {
     {
       name: '설화수 기초세트',
       category: '화장품',
-      image: '/images/cos1.jpg',
+      image: '/images/cos.jpg',
       price: 65000,
       countInStock: 5,
       brand: '설화수',

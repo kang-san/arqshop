@@ -66,8 +66,12 @@ console.log("File uploase >>>>>>>>>>>>>> storage ")
 
 uploadRouter.post(
     '/',
+    upload.single('image'),
     expressAsyncHandler(async (req, res) => {
-      console.log('업로드 성공');
+      const Img = req.file;
+      console.log('s3 이미지 경로 :',Img.location);
+
+
     })
 );
 
