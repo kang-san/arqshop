@@ -49,7 +49,7 @@ export default function ProductScreen(props) {
         createReview(productId, { rating, comment, name: userInfo.name })
       );
     } else {
-      alert('Please enter comment and rating');
+      alert('평점이나 상품평을 입력해주세요');
     }
   };
   return (
@@ -219,7 +219,7 @@ export default function ProductScreen(props) {
                   </form>
                 ) : (
                   <MessageBox>
-                    Please <Link to="/signin">Sign In</Link> to write a review
+                    Please <Link to="/signin">Sign In</Link> 로그인 하기
                   </MessageBox>
                 )}
               </li>

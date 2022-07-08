@@ -91,7 +91,7 @@ export default function SupportScreen() {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!messageBody.trim()) {
-      alert('Error. Please type message.');
+      alert('메세지를 입력해주세요.');
     } else {
       allMessages = [
         ...allMessages,

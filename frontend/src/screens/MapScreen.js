@@ -73,7 +73,7 @@ export default function MapScreen(props) {
       alert('location selected successfully.');
       navigate('/shipping');
     } else {
-      alert('Please enter your address');
+      alert('고객님의 주소를 입력해주세요');
     }
   };
 
