@@ -7,37 +7,50 @@ const AWS = require('aws-sdk');
 AWS.config.loadFromPath(__dirname + '/../config/s3.json');
 const uploadRouter = express.Router();
 
-const s3 = new AWS.S3();
-
-const storageS3 = multerS3({
-  s3: s3,
-  bucket: "7zone",
-  acl: 'public-read',
-  contentType: multerS3.AUTO_CONTENT_TYPE,
-  key(req, file, cb){
-      cb(null, file.originalname); // 이름 설정
-  }
+const s3 = new AWS.S3({
+    accessKeyId: process.env.S3_ACCESS_KEY,
+    secretAccessKey: process.env.S3_SECRET_KEY,
+    region: process.env.S3_BUCKET_REGION
 });
 
-const upload = multer({storage: storageS3});
 
-console.log("File uploase >>>>>>>>>>>>>> storage ")
+const upload = (bucketName) =>
+    multer({
+        storageS3 : multerS3({
+            s3,
+            bucket: bucketName,
+            acl: 'public-read',
+            contentType: multerS3.AUTO_CONTENT_TYPE,
+            metadata: function (req, file, cb){
+                cb(null, {fieldName: file.fieldName});
+            },
+            key(req, file, cb){
+                cb(null, file.originalname); // 이름 설정
+            },
+    }),
+})
 
 
 uploadRouter.post(
     '/',
-    upload.single('image'),
     isAuth,
     expressAsyncHandler(async (req, res) => {
         console.log(req.file);
-        const image = req.file;
-        if (image === undefined) {
-            return res.status(400).send("이미지가 존재하지 않습니다.");
-        }
-        res.status(200).send(image);
+
+        const uploadSingle = upload("7znoe").single('image');
+        uploadSingle(req, res, (err) => {
+                if(err)
+                    return res.status(400).json({success: false, message: err.message});
+                console.log(req.file)
+
+                res.status(200).json({data: req.file})
+            }
+        )
     })
-);
-
-
+)
 
 module.exports= uploadRouter;
+
+
+
+
