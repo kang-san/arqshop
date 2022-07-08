@@ -38,28 +38,41 @@ const bucket = process.env.AWS_BUCKET;
 console.log("File uploase >>>>>>>>>>>>>> START ")
 
 
-AWS.config.update({
-  accessKeyId: accessKeyId,
-  secretAccessKey: secretAccessKey,
-  region: region
-});
-
-const s3 = new AWS.S3(AWS.config.update);
+// AWS.config.update({
+//   accessKeyId: accessKeyId,
+//   secretAccessKey: secretAccessKey,
+//   region: region
+// });
+//
+// const s3 = new AWS.S3(AWS.config.update);
 
 console.log("File uploase >>>>>>>>>>>>>>  "+ region)
 
-const storageS3 = multerS3({
-  s3: s3,
-  bucket: bucket,
-  acl: 'public-read',
-  contentType: multerS3.AUTO_CONTENT_TYPE,
-  key(req, file, cb){
-    cb(null, file.originalname);
-  }
+// const storageS3 = multerS3({
+//   s3: s3,
+//   bucket: bucket,
+//   acl: 'public-read',
+//   contentType: multerS3.AUTO_CONTENT_TYPE,
+//   key(req, file, cb){
+//     cb(null, file.originalname);
+//   }
+// });
+//
+// const upload = multer({storage: storageS3});
+
+const s3 = new AWS.S3();
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: '7zone',
+    acl: 'public-read',
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    key: function (req, file, cb) {
+      cb(null, `${Date.now()}_${file.originalname}`);
+    },
+  }),
 });
 
-
-const upload = multer({storage: storageS3});
 
 console.log("File uploase >>>>>>>>>>>>>> storage ")
 
