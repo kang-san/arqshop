@@ -107,7 +107,7 @@ const data = {
     {
       name: '설화수 기초세트',
       category: '화장품',
-      image: '/images/cos.jpg',
+      image: '/images/cos1.jpg',
       price: 65000,
       countInStock: 5,
       brand: '설화수',
