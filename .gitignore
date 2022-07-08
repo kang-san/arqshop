@@ -23,5 +23,6 @@ backend/package-lock.json
 
 /uploads/*.jpg
 
+#env
 .env.dev
 .env
