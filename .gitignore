@@ -26,3 +26,4 @@ backend/package-lock.json
 #env
 .env.dev
 .env
+./backend/s3.json

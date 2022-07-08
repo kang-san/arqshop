@@ -4,58 +4,21 @@ const express = require('express');
 const expressAsyncHandler = require('express-async-handler');
 const { isAuth, isAdmin } = require('../utils.js');
 const AWS = require('aws-sdk');
+AWS.config.loadFromPath(__dirname + '/../config/s3.json');
 
-const dotenv = require('dotenv')
-dotenv.config({
-  path : ".env"
-});
 
 
 const uploadRouter = express.Router();
 
-
-
-// const storage = multer.diskStorage({
-//   destination(req, file, cb) {
-//     cb(null, 'uploads/');
-//   },
-//   filename(req, file, cb) {
-//     cb(null, `${Date.now()}.jpg`);
-//   },
-// });
-//
-// const upload = multer({ storage });
-//
-// uploadRouter.post('/', isAuth, upload.single('image'), (req, res) => {
-//   console.log("파일 업로드")
-//   res.send(`/${req.file.path}`);
-// });
-
-const accessKeyId =  process.env.AWS_ACCESS_KEY;
-const secretAccessKey = process.env.AWS_SECRET_KEY;
-const region = process.env.AWS_config_region;
-const bucket = process.env.AWS_BUCKET;
-
-console.log("File uploase >>>>>>>>>>>>>> START ")
-
-
-AWS.config.update({
-  accessKeyId: accessKeyId,
-  secretAccessKey: secretAccessKey,
-  region: region
-});
-
-const s3 = new AWS.S3(AWS.config.update);
-
-console.log("File uploase >>>>>>>>>>>>>>  "+ region)
+const s3 = new AWS.S3();
 
 const storageS3 = multerS3({
   s3: s3,
-  bucket: bucket,
+  bucket: "7zone",
   acl: 'public-read',
   contentType: multerS3.AUTO_CONTENT_TYPE,
   key(req, file, cb){
-    cb(null, file.originalname);
+      cb(null, file.originalname); // 이름 설정
   }
 });
 
@@ -66,10 +29,14 @@ console.log("File uploase >>>>>>>>>>>>>> storage ")
 
 uploadRouter.post(
     '/',
+    upload.single('image'),
     expressAsyncHandler(async (req, res) => {
-
-
-
+        console.log(req.file);
+        const image = req.file;
+        if (image === undefined) {
+            return res.status(400).send("이미지가 존재하지 않습니다.");
+        }
+        res.status(200).send(image);
     })
 );
 

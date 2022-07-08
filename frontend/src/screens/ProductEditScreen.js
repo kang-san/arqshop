@@ -77,46 +77,17 @@ export default function ProductEditScreen(props) {
   console.log(" getUserInfo >>>>  "+userInfo.token)
 
   const uploadFileHandler = async (e) => {
-    // const file = e.target.files[0];
-    // const bodyFormData = new FormData();
-    // bodyFormData.append('image', file);
-    // setLoadingUpload(true);
-    // try {
-    //   console.log("upload")
-    //   const { data } = await Axios.post('/api/uploads', bodyFormData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //       Authorization: `Bearer ${userInfo.token}`,
-    //     },
-    //   });
-    //   console.log("upload result  " + JSON.stringify(data))
-    //
-    //   setImage(data);
-    //   setLoadingUpload(false);
-    // } catch (error) {
-    //   setErrorUpload(error.message);
-    //   setLoadingUpload(false);
-    // }
-
-
-
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('image', e.target.files[0]);
 
-    // showLoading();
-    console.log("파일 append")
+    console.log("파일 append"+formData)
     try {
-      // const {data} = await Axios({
-      //   url: `/api/uploads`,
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data',
-      //     Authorization: `Bearer ${userInfo.token}`
-      //   },
-      //   data: formData,
-      // });
-      const {data} = await Axios.post(`/api/uploads`);
-
+      const {data} = await Axios.post(`/api/uploads`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${userInfo.token}`
+          }}
+      );
       setImage(data);
       setLoadingUpload(false);
     } catch (error) {
@@ -176,6 +147,8 @@ export default function ProductEditScreen(props) {
                   <input
                       type="file"
                       id="imageFile"
+                      name='image'
+                      accept='image/*'
                       label="상품이미지를 등록해주세요"
                       onChange={uploadFileHandler}
                   ></input>
