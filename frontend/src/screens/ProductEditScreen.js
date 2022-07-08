@@ -103,6 +103,7 @@ export default function ProductEditScreen(props) {
     const formData = new FormData();
     formData.append('image', file);
     // showLoading();
+    console.log("파일 append")
     try {
       const {data} = await Axios({
         url: `/api/uploads/s3`,
@@ -116,6 +117,8 @@ export default function ProductEditScreen(props) {
       setImage(data);
       setLoadingUpload(false);
     } catch (error) {
+      console.log("서버 전송에러")
+
       setErrorUpload(error.message);
       setLoadingUpload(false);
     }
