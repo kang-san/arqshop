@@ -193,10 +193,11 @@
     width: 4px;
   }
   .carousel-container{
+    max-width: 370px;
     max-height: 200px !important;
   }
   .thumbnail {
-    max-width: 40px;
+    max-width: 32px;
   }
   .carousel-caption-bottom{
     bottom: 25px;
