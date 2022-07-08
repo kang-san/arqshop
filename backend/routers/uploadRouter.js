@@ -27,6 +27,7 @@ console.log("File uploase >>>>>>>>>>>>>> storage ")
 uploadRouter.post(
     '/',
     upload.single('image'),
+    isAuth,
     expressAsyncHandler(async (req, res) => {
         console.log(req.file);
         const image = req.file;
