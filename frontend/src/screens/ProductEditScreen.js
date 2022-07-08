@@ -8,6 +8,13 @@ import {PRODUCT_UPDATE_RESET} from "../constants/productConstants";
 import Axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 
+const ROOT_URL =  'http://7zone.co.kr:5000';
+
+Axios.defaults.baseURL = ROOT_URL;
+if (localStorage.getItem('auth_jwt_token')) {
+  Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
+}
+Axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export default function ProductEditScreen(props) {
   const navigate = useNavigate();
