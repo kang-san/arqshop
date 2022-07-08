@@ -61,6 +61,7 @@ const upload = multer({storage: storageS3});
 
 
 uploadRouter.post('/s3', isAuth, isAdmin, upload.single('image'), (req, res) => {
+  console.log(" file upload >>>>>>>>>>>>   ");
   res.send(req.file.location);
 })
 
