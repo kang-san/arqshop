@@ -66,7 +66,6 @@ console.log("File uploase >>>>>>>>>>>>>> storage ")
 
 uploadRouter.post(
     '/',
-    upload.single('image'),
     expressAsyncHandler(async (req, res) => {
       console.log('업로드 성공');
     })

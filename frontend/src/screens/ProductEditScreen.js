@@ -115,7 +115,7 @@ export default function ProductEditScreen(props) {
       //   },
       //   data: formData,
       // });
-      const {data} = await Axios.post(`/api/uploads`, formData);
+      const {data} = await Axios.post(`/api/uploads`);
 
       setImage(data);
       setLoadingUpload(false);
