@@ -99,8 +99,10 @@ export default function ProductEditScreen(props) {
     // }
 
 
-    const file = e.target.files[0];
-    const formData = new FormData();
+
+    let formData = new FormData();
+    formData.append('image', e.target.files[0]);
+
     formData.append('image', file);
     // showLoading();
     console.log("파일 append")
@@ -114,13 +116,7 @@ export default function ProductEditScreen(props) {
       //   },
       //   data: formData,
       // });
-
-
-      const {data} = await Axios({
-        url: `/api/uploads`,
-        method: 'POST'
-      });
-
+      const {data} = await Axios.post(`/api/uploads`, formData);
 
       setImage(data);
       setLoadingUpload(false);

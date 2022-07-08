@@ -68,7 +68,7 @@ console.log("File uploase >>>>>>>>>>>>>> storage ")
 //   res.send(req.file.location);
 // })
 
-uploadRouter.post('/', (req, res) => {
+uploadRouter.post('/', upload.single('image'),(req, res) => {
   console.log(" success ")
 });
 
