@@ -63,7 +63,7 @@ export default function ProductListScreen(props) {
   ]);
 
   const deleteHandler = (product) => {
-    if (window.confirm('Are you sure to delete?')) {
+    if (window.confirm('정말로 삭제하시겠습니까?')) {
       dispatch(deleteProduct(product._id));
     }
   };

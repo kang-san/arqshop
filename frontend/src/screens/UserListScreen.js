@@ -26,7 +26,7 @@ export default function UserListScreen(props) {
     });
   }, [dispatch, successDelete]);
   const deleteHandler = (user) => {
-    if (window.confirm('Are you sure?')) {
+    if (window.confirm('정말로 삭제하시겠습니까?')) {
       dispatch(deleteUser(user._id));
     }
   };

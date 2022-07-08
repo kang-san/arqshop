@@ -135,7 +135,7 @@ export default function ProfileScreen() {
                   <input
                     id="sellerLogo"
                     type="text"
-                    placeholder="Enter Seller Logo"
+                    placeholder="판매자 사진을 등록해주세요"
                     value={sellerLogo}
                     onChange={(e) => setSellerLogo(e.target.value)}
                   ></input>

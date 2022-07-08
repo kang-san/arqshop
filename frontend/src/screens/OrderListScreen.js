@@ -28,7 +28,7 @@ export default function OrderListScreen(props) {
     console.log("[OrderListScreen]  >>>>>>" + sellerMode )
   }, [dispatch, sellerMode, successDelete, userInfo._id]);
   const deleteHandler = (order) => {
-    if (window.confirm('Are you sure to delete?')) {
+    if (window.confirm('정말로 삭제하시겠습니까?')) {
       dispatch(deleteOrder(order._id));
     }
   };

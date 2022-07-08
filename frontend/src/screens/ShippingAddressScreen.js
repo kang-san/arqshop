@@ -75,14 +75,14 @@ export default function ShippingAddressScreen(props) {
       <CheckoutSteps step1 step2></CheckoutSteps>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>Shipping Address</h1>
+          <h1>배송정보</h1>
         </div>
         <div>
           <label htmlFor="fullName">이름</label>
           <input
             type="text"
             id="fullName"
-            placeholder="Enter full name"
+            placeholder="이름을 입력해주세요"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             required
@@ -93,7 +93,7 @@ export default function ShippingAddressScreen(props) {
           <input
             type="text"
             id="address"
-            placeholder="Enter address"
+            placeholder="주소를 입력해주세요"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
@@ -104,7 +104,7 @@ export default function ShippingAddressScreen(props) {
           <input
             type="text"
             id="city"
-            placeholder="Enter city"
+            placeholder="도시를 입력해주세요"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required
@@ -115,7 +115,7 @@ export default function ShippingAddressScreen(props) {
           <input
             type="text"
             id="postalCode"
-            placeholder="Enter postal code"
+            placeholder="우편번호를 입력해주세요"
             value={postalCode}
             onChange={(e) => setPostalCode(e.target.value)}
             required
@@ -126,7 +126,7 @@ export default function ShippingAddressScreen(props) {
           <input
             type="text"
             id="country"
-            placeholder="Enter country"
+            placeholder="국가명을 입력해주세요"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             required

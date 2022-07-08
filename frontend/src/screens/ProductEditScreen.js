@@ -146,7 +146,7 @@ export default function ProductEditScreen(props) {
                   <input
                       id="name"
                       type="text"
-                      placeholer="Enter name"
+                      placeholer="이름을 입력해주세요"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                   ></input>
@@ -156,7 +156,7 @@ export default function ProductEditScreen(props) {
                   <input
                       id="price"
                       type="text"
-                      placeholer="Enter price"
+                      placeholer="가격을 입력해주세요"
                       value={price}
                       onChange={(e) => setPrice(e.target.value)}
                   ></input>
@@ -166,7 +166,7 @@ export default function ProductEditScreen(props) {
                   <input
                       id="image"
                       type="text"
-                      placeholder="Enter image"
+                      placeholder="상품이미지명을 입력하세요"
                       value={image}
                       onChange={(e) => setImage(e.target.value)}
                   ></input>
@@ -176,7 +176,7 @@ export default function ProductEditScreen(props) {
                   <input
                       type="file"
                       id="imageFile"
-                      label="Choose Image"
+                      label="상품이미지를 등록해주세요"
                       onChange={uploadFileHandler}
                   ></input>
                   {loadingUpload && <LoadingBox></LoadingBox>}
@@ -189,7 +189,7 @@ export default function ProductEditScreen(props) {
                   <input
                       id="category"
                       type="text"
-                      placeholer="Enter category"
+                      placeholer="카테고리를 입력해주세요"
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                   ></input>
@@ -199,7 +199,7 @@ export default function ProductEditScreen(props) {
                   <input
                       id="brand"
                       type="text"
-                      placeholer="Enter brand"
+                      placeholer="브랜드를 입력해주세요"
                       value={brand}
                       onChange={(e) => setBrand(e.target.value)}
                   ></input>
@@ -209,7 +209,7 @@ export default function ProductEditScreen(props) {
                   <input
                       id="countInStock"
                       type="text"
-                      placeholer="Enter countInStock"
+                      placeholer="재고수량을 입력해주세요"
                       value={countInStock}
                       onChange={(e) => setCountInStock(e.target.value)}
                   ></input>
@@ -219,7 +219,7 @@ export default function ProductEditScreen(props) {
                   <textarea
                       id="description"
                       type="text"
-                      placeholer="Enter description"
+                      placeholer="제품소개를 입력해주세요"
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                   ></textarea>
