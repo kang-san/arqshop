@@ -103,7 +103,6 @@ export default function ProductEditScreen(props) {
     let formData = new FormData();
     formData.append('image', e.target.files[0]);
 
-    formData.append('image', file);
     // showLoading();
     console.log("파일 append")
     try {
