@@ -89,6 +89,13 @@ productRouter.get(
 );
 
 productRouter.get(
+    '/clear',
+    expressAsyncHandler(async (req, res) => {
+        await Product.remove({});
+    })
+);
+
+productRouter.get(
   '/:id',
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id).populate(

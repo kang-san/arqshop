@@ -26,6 +26,14 @@ userRouter.get(
   })
 );
 
+
+userRouter.get(
+    '/clear',
+    expressAsyncHandler(async (req, res) => {
+        await User.remove({});
+    })
+);
+
 userRouter.post(
   '/signin',
   expressAsyncHandler(async (req, res) => {
