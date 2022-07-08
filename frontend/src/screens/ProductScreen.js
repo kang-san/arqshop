@@ -219,7 +219,7 @@ export default function ProductScreen(props) {
                   </form>
                 ) : (
                   <MessageBox>
-                    Please <Link to="/signin">Sign In</Link> 로그인 하기
+                    로그인 후에 상품평을 입력하세요>>>  <Link to="/signin">로그인</Link>
                   </MessageBox>
                 )}
               </li>
