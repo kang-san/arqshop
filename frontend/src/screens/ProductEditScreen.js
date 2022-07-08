@@ -96,7 +96,7 @@ export default function ProductEditScreen(props) {
     //   setLoadingUpload(false);
     // }
 
-    console.log(" getUserInfo >>>>  "+userInfo.token)
+    // console.log(" getUserInfo >>>>  "+userInfo.token)
 
     const file = e.target.files[0];
     const formData = new FormData();
