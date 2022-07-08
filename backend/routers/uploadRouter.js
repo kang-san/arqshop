@@ -4,10 +4,7 @@ const express = require('express');
 const expressAsyncHandler = require('express-async-handler');
 const { isAuth, isAdmin } = require('../utils.js');
 const AWS = require('aws-sdk');
-AWS.config.loadFromPath('../s3.json');
-
-
-
+AWS.config.loadFromPath(__dirname + '/../config/s3.json');
 const uploadRouter = express.Router();
 
 const s3 = new AWS.S3();
