@@ -35,6 +35,9 @@ const secretAccessKey = process.env.AWS_SECRET_KEY;
 const region = process.env.AWS_config_region;
 const bucket = process.env.AWS_BUCKET;
 
+console.log("File uploase >>>>>>>>>>>>>> START ")
+
+
 AWS.config.update({
   accessKeyId: accessKeyId,
   secretAccessKey: secretAccessKey,
