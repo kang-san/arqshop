@@ -26,13 +26,13 @@ import {
   ORDER_SUMMARY_SUCCESS,
 } from '../constants/orderConstants';
 
-const ROOT_URL =  'http://7zone.co.kr:5000';
-
-Axios.defaults.baseURL = ROOT_URL;
-if (localStorage.getItem('auth_jwt_token')) {
-  Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
-}
-Axios.defaults.headers.post['Content-Type'] = 'application/json';
+// const ROOT_URL =  'http://7zone.co.kr:5000';
+//
+// Axios.defaults.baseURL = ROOT_URL;
+// if (localStorage.getItem('auth_jwt_token')) {
+//   Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
+// }
+// Axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export const createOrder = (order) => async (dispatch, getState) => {
   dispatch({ type: ORDER_CREATE_REQUEST, payload: order });

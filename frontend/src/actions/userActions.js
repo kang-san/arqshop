@@ -26,13 +26,13 @@ import {
   USER_TOPSELLERS_LIST_FAIL,
 } from '../constants/userConstants';
 
-const ROOT_URL =  'http://7zone.co.kr:5000';
-
-Axios.defaults.baseURL = ROOT_URL;
-if (localStorage.getItem('auth_jwt_token')) {
-  Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
-}
-Axios.defaults.headers.post['Content-Type'] = 'application/json';
+// const ROOT_URL =  'http://7zone.co.kr:5000';
+//
+// Axios.defaults.baseURL = ROOT_URL;
+// if (localStorage.getItem('auth_jwt_token')) {
+//   Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
+// }
+// Axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export const register = (name, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: { email, password } });

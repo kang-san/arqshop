@@ -23,13 +23,13 @@ import {
   PRODUCT_REVIEW_CREATE_FAIL,
 } from '../constants/productConstants';
 
-const ROOT_URL =  'http://7zone.co.kr:5000';
-
-Axios.defaults.baseURL = ROOT_URL;
-if (localStorage.getItem('auth_jwt_token')) {
-    Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
-}
-Axios.defaults.headers.post['Content-Type'] = 'application/json';
+// const ROOT_URL =  'http://7zone.co.kr:5000';
+//
+// Axios.defaults.baseURL = ROOT_URL;
+// if (localStorage.getItem('auth_jwt_token')) {
+//     Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
+// }
+// Axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export const listProducts =
   ({

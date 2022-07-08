@@ -181,10 +181,10 @@
 @media only screen and (max-width: 768px) {
   .prev,
   .next,
-  .carousel-caption-bottom, 
-  .carousel-caption-center, 
-  .carousel-caption-top, 
-  .slide-number 
+  .carousel-caption-bottom,
+  .carousel-caption-center,
+  .carousel-caption-top,
+  .slide-number
   {
     font-size: 20px !important;
   }
@@ -193,10 +193,12 @@
     width: 4px;
   }
   .carousel-container{
+    max-width: 370px !important;
     max-height: 200px !important;
   }
   .thumbnail {
-    max-width: 40px;
+    max-width: 32px;
+    align-items: center;
   }
   .carousel-caption-bottom{
     bottom: 25px;

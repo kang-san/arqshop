@@ -11,7 +11,7 @@ const uploadRouter = require('./routers/uploadRouter.js') ;
 const cors = require("cors");
 
 dotenv.config({
-  path : "../.env"
+  path : "../.env.dev"
 });
 
 const app = express();
@@ -28,7 +28,7 @@ app.use(cors(corsOptions));
 
 connectToDB();
 
-app.use('/api/uploads', uploadRouter);
+// app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
