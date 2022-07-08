@@ -46,11 +46,11 @@ const s3 = new AWS.S3(AWS.config.update);
 console.log("File uploase >>>>>>>>>>>>>>  "+ region)
 
 const storageS3 = multerS3({
-  s3,
+  s3: s3,
   bucket: bucket,
   acl: 'public-read',
   contentType: multerS3.AUTO_CONTENT_TYPE,
-  key(req, file, cb){s3
+  key(req, file, cb){
     cb(null, file.originalname);
   }
 });
@@ -61,7 +61,6 @@ const upload = multer({storage: storageS3});
 
 
 uploadRouter.post('/s3', isAuth, isAdmin, upload.single('image'), (req, res) => {
-  console.log(" file upload >>>>>>>>>>>>   ");
   res.send(req.file.location);
 })
 
