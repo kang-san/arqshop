@@ -89,6 +89,8 @@ export default function ProductEditScreen(props) {
     //   setLoadingUpload(false);
     // }
 
+    console.log(" getUserInfo >>>>  "+JSON.stringify(userInfo.token))
+
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('image', file);
