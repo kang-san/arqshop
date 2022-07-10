@@ -2,9 +2,8 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 const express = require('express');
 const expressAsyncHandler = require('express-async-handler');
-const { isAuth, isAdmin } = require('../utils.js');
+const { isAuth } = require('../utils.js');
 const AWS = require('aws-sdk');
-AWS.config.loadFromPath(__dirname + '/../config/s3.json');
 const uploadRouter = express.Router();
 
 const s3 = new AWS.S3({
@@ -44,6 +43,8 @@ uploadRouter.post(
                 console.log("req.file >>>>>>>  upload >>>>>>>> "+ req.file);
 
                 res.status(200).json({data: req.file})
+                console.log("req.file >>>>>>>  server res success >>>>>>>> "+ req.file);
+
             }
         )
     })
