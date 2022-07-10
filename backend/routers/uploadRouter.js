@@ -35,13 +35,13 @@ uploadRouter.post(
     '/',
     isAuth,
     expressAsyncHandler(async (req, res) => {
-        console.log(req.file);
+        console.log("req.file >>>>>>>>>>>>>>> "+ req.file);
 
         const uploadSingle = upload("7znoe").single('image');
         uploadSingle(req, res, (err) => {
                 if(err)
                     return res.status(400).json({success: false, message: err.message});
-                console.log(req.file)
+                console.log("req.file >>>>>>>  upload >>>>>>>> "+ req.file);
 
                 res.status(200).json({data: req.file})
             }
