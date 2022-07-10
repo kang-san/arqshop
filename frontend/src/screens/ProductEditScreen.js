@@ -88,6 +88,7 @@ export default function ProductEditScreen(props) {
             Authorization: `Bearer ${userInfo.token}`
           }}
       );
+      console.log(" 업로드된 파일 결과 데이터   >>>>>>>>> "+JSON.stringify(data))
       setImage(data);
       setLoadingUpload(false);
     } catch (error) {
