@@ -16,13 +16,13 @@ uploadRouter.post(
     expressAsyncHandler(async (req, res) => {
         const image = req.file.filename;
 
-        console.log("req.file >>>>>>>>>>>>>>> "+ JSON.stringify(req.file.filename));
+        console.log("multer req.file >>>>>>>>>>>>>>> "+ req.file.filename);
         if(image === undefined) {
             return res.status(400).json({success: false, message: err.message});
 
         }
         res.send('Uploaded : '+req.file.filename);
-        console.log("req.file >>>>>>>  server res success >>>>>>>> "+ req.file.filename);
+        console.log("multer req.file >>>>>>>  server res success >>>>>>>> "+ req.file.filename);
     })
 )
 
