@@ -5,6 +5,10 @@ const expressAsyncHandler = require('express-async-handler');
 const { isAuth } = require('../utils.js');
 const AWS = require('aws-sdk');
 const uploadRouter = express.Router();
+const uuid = require('uuid').v4;
+const path = require('path');
+const Product = require('../models/productModel.js');
+
 
 const s3 = new AWS.S3({
     accessKeyId: process.env.S3_ACCESS_KEY,
@@ -13,18 +17,19 @@ const s3 = new AWS.S3({
 });
 
 
-const upload = (bucketName) =>
-    multer({
-        storageS3 : multerS3({
+
+const upload = multer({
+        storage : multerS3({
             s3,
-            bucket: bucketName,
+            bucket: '7zone',
             acl: 'public-read',
             contentType: multerS3.AUTO_CONTENT_TYPE,
             metadata: function (req, file, cb){
                 cb(null, {fieldName: file.fieldName});
             },
             key(req, file, cb){
-                cb(null, file.originalname); // 이름 설정
+                const ext = path.extname(file.originalname);
+                cb(null, `${uuid()}${ext}`);
             },
     }),
 })
@@ -33,20 +38,16 @@ const upload = (bucketName) =>
 uploadRouter.post(
     '/',
     isAuth,
+    upload.single('image'),
     expressAsyncHandler(async (req, res) => {
-        console.log("req.file >>>>>>>>>>>>>>> "+ JSON.stringify(req.file.destination));
-
-        const uploadSingle = upload("7znoe").single('image');
-        uploadSingle(req, res, (err) => {
-                if(err)
-                    return res.status(400).json({success: false, message: err.message});
-                console.log("req.file >>>>>>>  upload >>>>>>>> "+ req.file.destination);
-
-                res.status(200).json({data: req.file.destination})
-                console.log("req.file >>>>>>>  server res success >>>>>>>> "+ req.file.destination);
-
-            }
-        )
+        const productId = req.params.id;
+        const product = await Product.findById(productId);
+        const uploadImage = req.file.location;
+        if (product) {
+            product.image = uploadImage;
+        }
+        await product.save();
+        res.json({status: 'OK', uploadImage});
     })
 )
 
