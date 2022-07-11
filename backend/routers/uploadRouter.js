@@ -40,7 +40,7 @@ uploadRouter.post(
         uploadSingle(req, res, (err) => {
                 if(err)
                     return res.status(400).json({success: false, message: err.message});
-                console.log("req.file >>>>>>>  upload >>>>>>>> "+ req.file);
+                console.log("req.file >>>>>>>  upload >>>>>>>> "+ req.file.destination);
 
                 res.status(200).json({data: req.file.destination})
                 console.log("req.file >>>>>>>  server res success >>>>>>>> "+ req.file.destination);
