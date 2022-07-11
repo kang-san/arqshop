@@ -7,7 +7,7 @@ const path = require('path') ;
 const productRouter = require("./routers/productRouter.js");
 const userRouter = require("./routers/userRouter.js");
 const orderRouter = require("./routers/orderRouter.js");
-const uploadRouter = require('./routers/uploadRouter.js') ;
+const uploadRouter = require('./routers/uploadRouter-S3.js') ;
 const cors = require("cors");
 
 dotenv.config({

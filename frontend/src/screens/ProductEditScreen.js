@@ -89,7 +89,7 @@ export default function ProductEditScreen(props) {
           }}
       );
       console.log(" 업로드된 파일 결과 데이터   >>>>>>>>> "+JSON.stringify(data))
-      setImage(data.originalname);
+      setImage(data);
       setLoadingUpload(false);
     } catch (error) {
       console.log("서버 전송에러")
