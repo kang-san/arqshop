@@ -29,7 +29,7 @@ uploadRouter.post(
             return res.status(400).json({success: false, message: err.message});
 
         }
-        res.send('Uploaded : '+req.file.originalname);
+        res.send(req.file.originalname);
         console.log("multer req.file.orignal >>>>>>>  server res success >>>>>>>> "+ req.file.originalname);
     })
 )
