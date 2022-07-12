@@ -8,7 +8,10 @@ const uploadRouter = express.Router();
 const uuid = require('uuid').v4;
 const path = require('path');
 const Product = require('../models/productModel.js');
-
+const dotenv = require('dotenv') ;
+dotenv.config({
+    path : "../.env"
+});
 
 const s3 = new AWS.S3({
     accessKeyId: process.env.S3_ACCESS_KEY,
