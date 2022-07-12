@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 
-const data = {
+const data_test = {
   users: [
     {
       name: 'san',
@@ -10,7 +10,7 @@ const data = {
       isAdmin: true,
       seller: {
         name: 'san',
-        logo: '/images/san-m.jpg',
+        logo: 'https://7zone-test.s3.amazonaws.com/san-m.jpg',
         description: '강산',
         rating: 4.5,
         numReviews: 120,
@@ -24,7 +24,7 @@ const data = {
       isAdmin: true,
       seller: {
         name: 'kang',
-        logo: '/images/san.jpg',
+        logo: 'https://7zone-test.s3.amazonaws.com/san.jpg',
         description: '강산',
         rating: 4.5,
         numReviews: 120,
@@ -38,7 +38,7 @@ const data = {
       isAdmin: true,
       seller: {
         name: '최윤철',
-        logo: '/images/logo-arq2.jpg',
+        logo: 'https://7zone-test.s3.amazonaws.com/logo-arq2.jpg',
         description: '최윤철',
         rating: 4.5,
         numReviews: 120,
@@ -52,7 +52,7 @@ const data = {
       isAdmin: false,
       seller: {
         name: '최윤철',
-        logo: '/images/logo-arq2.jpg',
+        logo: 'https://7zone-test.s3.amazonaws.com/logo-arq2.jpg',
         description: '최윤철',
         rating: 4.5,
         numReviews: 120,
@@ -63,7 +63,7 @@ const data = {
     {
       name: '나이키 신발',
       category: '신발',
-      image: '/images/nike1.jpg',
+      image: 'https://7zone-test.s3.amazonaws.com/nike1.jpg',
       price: 12000,
       countInStock: 10,
       brand: '나이키',
@@ -74,7 +74,7 @@ const data = {
     {
       name: 'LG 디오스',
       category: '가전',
-      image: '/images/rf.jpg',
+      image: 'https://7zone-test.s3.amazonaws.com/rf.jpg',
       price: 1000000,
       countInStock: 20,
       brand: 'LG',
@@ -85,7 +85,7 @@ const data = {
     {
       name: '테팔 후라이팬',
       category: '주방',
-      image: '/images/tefal.jpg',
+      image: 'https://7zone-test.s3.amazonaws.com/tefal.jpg',
       price: 22000,
       countInStock: 0,
       brand: 'Lacoste',
@@ -96,7 +96,7 @@ const data = {
     {
       name: '나이키 슬림 바지',
       category: '바지',
-      image: '/images/nike-slim-p.jpg',
+      image: 'https://7zone-test.s3.amazonaws.com/nike-slim-p.jpg',
       price: 78000,
       countInStock: 15,
       brand: 'Nike',
@@ -107,7 +107,7 @@ const data = {
     {
       name: '설화수 기초세트',
       category: '화장품',
-      image: '/images/cos1.jpg',
+      image: 'https://7zone-test.s3.amazonaws.com/cos1.jpg',
       price: 65000,
       countInStock: 5,
       brand: '설화수',
@@ -118,7 +118,7 @@ const data = {
     {
       name: '타임',
       category: '패션',
-      image: '/images/time-c.jpg',
+      image: 'https://7zone-test.s3.amazonaws.com/time-c.jpg',
       price: 390000,
       countInStock: 12,
       brand: 'time',
@@ -129,7 +129,7 @@ const data = {
     {
       name: '샤넬백',
       category: '패션',
-      image: '/images/chanel.jpg',
+      image: 'https://7zone-test.s3.amazonaws.com/chanel.jpg',
       price: 1190000,
       countInStock: 12,
       brand: 'chanel',
@@ -150,4 +150,4 @@ const data = {
     },
   ],
 };
-module.exports= data;
+module.exports= data_test;
