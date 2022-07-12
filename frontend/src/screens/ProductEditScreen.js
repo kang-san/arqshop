@@ -80,7 +80,7 @@ export default function ProductEditScreen(props) {
     const formData = new FormData();
     formData.append('image', e.target.file[0]);
 
-    console.log("파일 append"+JSON.stringify(e.target.file[0]))
+    console.log("파일 append"+ e.target.file[0])
     try {
       const {data} = await Axios.post(`/api/uploads`, formData, {
           headers: {
@@ -88,7 +88,7 @@ export default function ProductEditScreen(props) {
             Authorization: `Bearer ${userInfo.token}`
           }}
       );
-      console.log(" 업로드된 파일 결과 데이터   >>>>>>>>> "+JSON.stringify(data))
+      console.log(" 업로드된 파일 결과 데이터   >>>>>>>>> "+ data)
       setImage(data);
       setLoadingUpload(false);
     } catch (error) {
