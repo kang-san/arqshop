@@ -1,6 +1,6 @@
 const express = require('express');
 const expressAsyncHandler = require('express-async-handler');
-const data = require('../data_test.js');
+const data = require('../data.js');
 const Product = require('../models/productModel.js');
 const User = require('../models/userModel.js');
 const { isAdmin, isAuth, isSellerOrAdmin } = require('../utils.js');
