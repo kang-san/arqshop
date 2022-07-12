@@ -13,36 +13,46 @@ dotenv.config({
     path : "../.env"
 });
 
+const ACCESS_KEY = process.env.S3_ACCESS_KEY;
+const SECRET_ACCESS_KEY = process.env.S3_SECRET_KEY;
+const REGION = process.env.S3_BUCKET_REGION;
+const S3_BUCKET = process.env.S3_BUCKET;
+
+// AWS ACCESS KEY를 세팅합니다.
+AWS.config.update({
+    accessKeyId: ACCESS_KEY,
+    secretAccessKey: SECRET_ACCESS_KEY
+});
+
+// 버킷에 맞는 이름과 리전을 설정합니다.
 const s3 = new AWS.S3({
-    accessKeyId: process.env.S3_ACCESS_KEY,
-    secretAccessKey: process.env.S3_SECRET_KEY,
-    region: process.env.S3_BUCKET_REGION
+    params: { Bucket: S3_BUCKET},
+    region: REGION,
 });
 
 
 
 const upload = multer({
         storage : multerS3({
-            // s3,
-            // bucket: '7zone-product',
-            // acl: 'public-read',
-            // contentType: multerS3.AUTO_CONTENT_TYPE,
-            // metadata: function (req, file, cb){
-            //     cb(null, {fieldName: file.fieldName});
-            // },
-            // key(req, file, cb){
-            //     const ext = path.extname(file.originalname);
-            //     cb(null, `${uuid()}${ext}`);
-            // },
+            s3,
+            bucket: S3_BUCKET,
 
-            s3: s3,
-            bucket: '7zone-product',
-            metadata: function (req, file, cb) {
-                cb(null, Object.assign({}, req.body));
+            metadata: function (req, file, cb){
+                cb(null, {fieldName: file.fieldName});
             },
-            key: function (req, file, cb) {
-                cb(null, req.params.id + ".jpg");
-            }
+            key(req, file, cb){
+                const ext = path.extname(file.originalname);
+                cb(null, `${uuid()}${ext}`);
+            },
+
+            // s3: s3,
+            // bucket: S3_BUCKET,
+            // metadata: function (req, file, cb) {
+            //     cb(null, Object.assign({}, req.body));
+            // },
+            // key: function (req, file, cb) {
+            //     cb(null, req.params.id + ".jpg");
+            // }
     }),
 })
 
