@@ -20,17 +20,26 @@ const s3 = new AWS.S3({
 
 const upload = multer({
         storage : multerS3({
-            s3,
+            // s3,
+            // bucket: '7zone-product',
+            // acl: 'public-read',
+            // contentType: multerS3.AUTO_CONTENT_TYPE,
+            // metadata: function (req, file, cb){
+            //     cb(null, {fieldName: file.fieldName});
+            // },
+            // key(req, file, cb){
+            //     const ext = path.extname(file.originalname);
+            //     cb(null, `${uuid()}${ext}`);
+            // },
+
+            s3: s3,
             bucket: '7zone-product',
-            acl: 'public-read',
-            contentType: multerS3.AUTO_CONTENT_TYPE,
-            metadata: function (req, file, cb){
-                cb(null, {fieldName: file.fieldName});
+            metadata: function (req, file, cb) {
+                cb(null, Object.assign({}, req.body));
             },
-            key(req, file, cb){
-                const ext = path.extname(file.originalname);
-                cb(null, `${uuid()}${ext}`);
-            },
+            key: function (req, file, cb) {
+                cb(null, req.params.id + ".jpg");
+            }
     }),
 })
 
@@ -39,7 +48,7 @@ uploadRouter.post(
     '/',
     isAuth,
     upload.single('image'),
-    expressAsyncHandler(async (req, res) => {
+    expressAsyncHandler(async (req, res, next) => {
         const productId = req.params.id;
         const product = await Product.findById(productId);
         const uploadImage = req.file.location;
@@ -47,6 +56,7 @@ uploadRouter.post(
             product.image = uploadImage;
         }
         await product.save();
+        console.log("update 성공 >>>>>>> " + uploadImage)
         res.json({status: 'OK', uploadImage});
     })
 )
