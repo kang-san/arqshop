@@ -29,7 +29,7 @@ const upload = multer({
 
 
 
-uploadRouter.post( '/', isAuth, upload.array('image'),
+uploadRouter.post( '/',  upload.array('image'),
     async (req, res) => {
         try{
             const results = await s3Uploadv3(req.files);
