@@ -33,7 +33,6 @@
     "mailgun-js": "^0.22.0",
     "mongoose": "^6.0.13",
     "multer": "^1.4.3",
-    "multer-s3": "^3.0.1",
     "socket.io": "^4.4.0"
   }
 }

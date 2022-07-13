@@ -140,7 +140,7 @@ const data = {
     {
       name: '불가리',
       category: '패션',
-      image: 'images/b1.jpg',
+      image: '/images/b1.jpg',
       price: 2390000,
       countInStock: 12,
       brand: '불가리',
