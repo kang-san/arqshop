@@ -1,9 +1,15 @@
-const { S3 } = require("aws-sdk");
+const { AWS } = require("aws-sdk");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const uuid = require("uuid").v4;
 
 exports.s3Uploadv2 = async (files) => {
-    const s3 = new S3();
+
+    AWS.config.update({
+        accessKeyId: process.env.AWS_ACESS_KEY,
+        secretAccessKey: process.env.AWS_SECRET_KEY,
+    });
+
+    const s3 = new AWS.S3();
 
     const params = files.map((file) => {
         return {
