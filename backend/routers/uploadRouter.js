@@ -27,20 +27,19 @@ const upload = multer({
 });
 
 
-
-
 uploadRouter.post( '/',  upload.array('image'),
     async (req, res) => {
-        try{
-            const results = await s3Uploadv3(req.files);
+        try {
+            const results = await s3Uploadv2(req.files);
             console.log(results);
             return res.json({ status: "success" });
-        }catch (err) {
+        } catch (err) {
             console.log(err);
         }
 
     }
 )
+
 
 module.exports= uploadRouter;
 
