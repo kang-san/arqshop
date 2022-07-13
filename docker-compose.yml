@@ -19,10 +19,6 @@ services:
       NODE_ENV: ${NODE_ENV}
       MONGO_URI: ${MONGO_URI}
 
-      AWS_ACCESS_KEY: ${AWS_ACCESS_KEY}
-      AWS_SECRET_KEY: ${AWS_SECRET_KEY}
-      AWS_config_region: ${AWS_config_region}
-      S3_BUCKET: ${S3_BUCKET}
     networks:
       - mern-app
 
