@@ -5,9 +5,6 @@ import Rating from './Rating';
 export default function Product(props) {
   const { product } = props;
 
-  console.log(`/seller/${product.seller._id}`)
-  console.log(product.seller.seller.name)
-
   return (
     <div key={product._id} className="card">
       <Link to={`/product/${product._id}`}>

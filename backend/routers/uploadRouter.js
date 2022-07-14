@@ -7,6 +7,8 @@ const uploadRouter = express.Router();
 const Product = require('../models/productModel.js');
 const dotenv = require('dotenv') ;
 const fs = require('fs');
+const path = require('path');
+
 
 dotenv.config({
     path : "../.env"
@@ -33,6 +35,9 @@ const s3 = new AWS.S3({
 //     }),
 // });
 
+// call S3 to retrieve upload file to specified bucket
+var uploadParams = {Bucket: process.argv[2], Key: '', Body: ''};
+
 uploadRouter.post(
     '/',
     async (req, res, next) => {
@@ -48,23 +53,26 @@ uploadRouter.post(
         // await product.save();
         // console.log("update 성공 >>>>>>> " + uploadImage)
         // res.json({status: 'OK', uploadImage});
-        const fileContent = fs.readFileSync(req.file.filename);
 
-        console.log("req 도착")
+        const fileStream = fs.createReadStream(req.file);
+        fileStream.on('error', function(err) {
+            console.log('File Error', err);
+        });
+        uploadParams.Body = fileStream;
+        uploadParams.Key = path.basename(req.file);
 
-        const params = {
-            Bucket: process.env.AWS_BUCKET_NAME,
-            key: 'upload.jpg',
-            body: fileContent
-        }
-
-        // uploading
-        s3.upload(params, function (err, data){
-            if(err) {
-                throw err;
+// call S3 to retrieve upload file to specified bucket
+        s3.upload (uploadParams, function (err, data) {
+            if (err) {
+                console.log("Error", err);
+            } if (data) {
+                console.log("Upload Success", data.Location);
+                res.json({status: 'OK', data});
             }
-            console.log(`File uploaded successfully. ${data.Location}`)
-        })
+        });
+
+
+
     }
 )
 
