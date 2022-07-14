@@ -17,7 +17,6 @@ const s3 = new AWS.S3({
     region: process.env.AWS_BUCKET_REGION,
 })
 
-
 const upload = multer({
     storage: multerS3({
         s3: s3,
@@ -36,12 +35,12 @@ uploadRouter.post(
     '/',
     upload.single('image'),
     async (req, res, next) => {
-        console.log("S3 upload 도착 >>>> " + req.files.location)
+        console.log("S3 upload 도착 >>>> " + req.file.location)
         const productId = req.params.id;
         console.log("S3 upload product 찾기 >>>> " + req.params.id)
 
         const product = await Product.findById(productId);
-        const uploadImage = req.files.location;
+        const uploadImage = req.file.location;
         if (product) {
             product.image = uploadImage;
         }
