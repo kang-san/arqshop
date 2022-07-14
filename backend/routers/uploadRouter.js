@@ -1,4 +1,5 @@
 const multer = require('multer');
+const multerS3 = require('multer-s3');
 const express = require('express');
 const { isAuth } = require('../utils.js');
 const { s3Uploadv2, s3Uploadv3 } = require("../s3Service");
@@ -10,48 +11,47 @@ dotenv.config({
     path : "../.env"
 });
 
-const storage = multer.memoryStorage();
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
+    region: process.env.AWS_BUCKET_REGION,
+})
 
-const fileFilter = (req, file, cb) => {
-    if (file.mimetype.split("/")[0] === "image") {
-        cb(null, true);
-    } else {
-        cb(new multer.MulterError("LIMIT_UNEXPECTED_FILE"), false);
-    }
-};
 
 const upload = multer({
-    storage,
-    fileFilter,
-    limits: { fileSize: 1000000000, files: 2 },
+    storage: multerS3({
+        s3: s3,
+        acl : 'public-read-write',
+        bucket: process.env.AWS_BUCKET_NAME,
+        metadata: function (req, file, cb) {
+            cb(null, {fieldName: file.fieldname});
+        },
+        key: function (req, file, cb) {
+            cb(null, Date.now().toString())
+        }
+    }),
 });
 
-
-uploadRouter.post( '/',  upload.array('image'),
-    async (req, res) => {
-        try {
-            const results = await s3Uploadv2(req.files);
-            console.log(results);
-            return res.json({ status: "success" });
-        } catch (err) {
-            console.log(err);
+uploadRouter.post(
+    '/',
+    isAuth,
+    upload.single('image'),
+    async (req, res, next) => {
+        const productId = req.params.id;
+        const product = await Product.findById(productId);
+        const uploadImage = req.files.location;
+        if (product) {
+            product.image = uploadImage;
         }
-
+        await product.save();
+        console.log("update 성공 >>>>>>> " + uploadImage)
+        res.json({status: 'OK', uploadImage});
     }
 )
-
 
 module.exports= uploadRouter;
 
 
 
 
-// const productId = req.params.id;
-// const product = await Product.findById(productId);
-// const uploadImage = req.file.location;
-// if (product) {
-//     product.image = uploadImage;
-// }
-// await product.save();
-// console.log("update 성공 >>>>>>> " + uploadImage)
-// res.json({status: 'OK', uploadImage});
