@@ -33,7 +33,7 @@ const upload = multer({
 
 uploadRouter.post(
     '/',
-    // upload.single('image'),
+
     async (req, res, next) => {
         // console.log("S3 upload 도착 >>>> " + req.file.location)
         // const productId = req.params.id;
@@ -47,8 +47,8 @@ uploadRouter.post(
         // await product.save();
         // console.log("update 성공 >>>>>>> " + uploadImage)
         // res.json({status: 'OK', uploadImage});
-        console.log("file" + req.file.location)
-        res.send('Successfully uploaded ' + req.file.location)
+        console.log("upload s3")
+        // res.send('Successfully uploaded ' + req.file.location)
 
     }
 )
