@@ -17,55 +17,39 @@ const s3 = new AWS.S3({
     region: process.env.AWS_BUCKET_REGION,
 })
 
-// const upload = multer({
-//     storage: multerS3({
-//         s3: s3,
-//         acl : 'public-read-write',
-//         bucket: process.env.AWS_BUCKET_NAME,
-//         metadata: function (req, file, cb) {
-//             cb(null, {fieldName: file.fieldname});
-//         },
-//         key: function (req, file, cb) {
-//             cb(null, Date.now().toString())
-//         }
-//     }),
-// });
-let upload = multer({
-    limits: { fileSize: 5 * 1024 * 1024 } // 용량 제한
+const upload = multer({
+    storage: multerS3({
+        s3: s3,
+        acl : 'public-read-write',
+        bucket: process.env.AWS_BUCKET_NAME,
+        metadata: function (req, file, cb) {
+            cb(null, {fieldName: file.fieldname});
+        },
+        key: function (req, file, cb) {
+            cb(null, Date.now().toString())
+        }
+    }),
 });
 
 uploadRouter.post(
     '/',
     upload.single('image'),
     async (req, res, next) => {
-        try {
+        // console.log("S3 upload 도착 >>>> " + req.file.location)
+        // const productId = req.params.id;
+        // console.log("S3 upload product 찾기 >>>> " + req.params.id)
+        //
+        // const product = await Product.findById(productId);
+        // const uploadImage = req.file.location;
+        // if (product) {
+        //     product.image = uploadImage;
+        // }
+        // await product.save();
+        // console.log("update 성공 >>>>>>> " + uploadImage)
+        // res.json({status: 'OK', uploadImage});
 
-            const base64data = new Buffer(req.file.buffer, 'binary');
+        res.send('Successfully uploaded ' + req.file.location)
 
-            const params = {
-                Bucket: process.env.AWS_BUCKET_NAME,
-                Key: 'sample.png', // file name that you want to save in s3 bucket
-                Body: base64data,
-                ACL: "public-read-write",
-                ContentType: "image/png"
-            }
-
-            s3.upload(params, (err, data) => {
-                if (err) {
-                    console.log("err : ", err)
-                    res.send({ success: false });
-                }
-                else {
-                    console.log("data : ", data)
-                    res.send({ success: true, result: data })
-                }
-            });
-
-        }
-        catch (ERR) {
-            console.log("ERR : ", ERR)
-            res.send({ success: false })
-        }
     }
 )
 
