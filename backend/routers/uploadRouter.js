@@ -6,6 +6,8 @@ const uploadRouter = express.Router();
 // const uuid = require('uuid').v4;
 const Product = require('../models/productModel.js');
 const dotenv = require('dotenv') ;
+const fs = require('fs');
+
 dotenv.config({
     path : "../.env"
 });
@@ -46,9 +48,10 @@ uploadRouter.post(
         // await product.save();
         // console.log("update 성공 >>>>>>> " + uploadImage)
         // res.json({status: 'OK', uploadImage});
+        const fileContent = fs.readFileSync(req.file.filename);
+
         console.log("req 도착")
-        const fileContent = req.file;
-        
+
         const params = {
             Bucket: process.env.AWS_BUCKET_NAME,
             key: 'upload.jpg',
