@@ -40,13 +40,13 @@ uploadRouter.post(
     async (req, res, next) => {
         try {
 
-            var base64data = new Buffer(req.files[0].buffer, 'binary');
+            const base64data = new Buffer(req.file.buffer, 'binary');
 
             const params = {
-                Bucket: process.env.S3_BUCKET_NAME,
+                Bucket: process.env.AWS_BUCKET_NAME,
                 Key: 'sample.png', // file name that you want to save in s3 bucket
                 Body: base64data,
-                ACL: "public-read",
+                ACL: "public-read-write",
                 ContentType: "image/png"
             }
 
