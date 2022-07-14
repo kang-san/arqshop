@@ -2,9 +2,8 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 const express = require('express');
 const { isAuth } = require('../utils.js');
-const { s3Uploadv2, s3Uploadv3 } = require("../s3Service");
 const uploadRouter = express.Router();
-const uuid = require('uuid').v4;
+// const uuid = require('uuid').v4;
 const Product = require('../models/productModel.js');
 const dotenv = require('dotenv') ;
 dotenv.config({
