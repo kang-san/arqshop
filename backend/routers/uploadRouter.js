@@ -17,23 +17,22 @@ const s3 = new AWS.S3({
     region: process.env.AWS_BUCKET_REGION,
 })
 
-const upload = multer({
-    storage: multerS3({
-        s3: s3,
-        acl : 'public-read-write',
-        bucket: process.env.AWS_BUCKET_NAME,
-        metadata: function (req, file, cb) {
-            cb(null, {fieldName: file.fieldname});
-        },
-        key: function (req, file, cb) {
-            cb(null, Date.now().toString())
-        }
-    }),
-});
+// const upload = multer({
+//     storage: multerS3({
+//         s3: s3,
+//         acl : 'public-read-write',
+//         bucket: process.env.AWS_BUCKET_NAME,
+//         metadata: function (req, file, cb) {
+//             cb(null, {fieldName: file.fieldname});
+//         },
+//         key: function (req, file, cb) {
+//             cb(null, Date.now().toString())
+//         }
+//     }),
+// });
 
 uploadRouter.post(
     '/',
-    upload.single('image'),
     async (req, res, next) => {
         // console.log("S3 upload 도착 >>>> " + req.file.location)
         // const productId = req.params.id;
@@ -48,8 +47,20 @@ uploadRouter.post(
         // console.log("update 성공 >>>>>>> " + uploadImage)
         // res.json({status: 'OK', uploadImage});
 
-        res.send('Successfully uploaded ' + req.file.location)
+        const fileContent = req.file;
+        const params = {
+            Bucket: process.env.AWS_BUCKET_NAME,
+            key: 'upload.jpg',
+            body: fileContent
+        }
 
+        // uploading
+        s3.upload(params, function (err, data){
+            if(err) {
+                throw err;
+            }
+            console.log(`File uploaded successfully. ${data.Location}`)
+        })
     }
 )
 
