@@ -34,7 +34,6 @@ const upload = multer({
 
 uploadRouter.post(
     '/',
-    isAuth,
     upload.single('image'),
     async (req, res, next) => {
         const productId = req.params.id;
