@@ -46,8 +46,9 @@ uploadRouter.post(
         // await product.save();
         // console.log("update 성공 >>>>>>> " + uploadImage)
         // res.json({status: 'OK', uploadImage});
-
+        console.log("req 도착")
         const fileContent = req.file;
+        
         const params = {
             Bucket: process.env.AWS_BUCKET_NAME,
             key: 'upload.jpg',
