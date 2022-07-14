@@ -36,7 +36,10 @@ uploadRouter.post(
     '/',
     upload.single('image'),
     async (req, res, next) => {
+        console.log("S3 upload 도착 >>>> " + req.files.location)
         const productId = req.params.id;
+        console.log("S3 upload product 찾기 >>>> " + req.params.id)
+
         const product = await Product.findById(productId);
         const uploadImage = req.files.location;
         if (product) {
