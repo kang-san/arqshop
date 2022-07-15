@@ -1,6 +1,8 @@
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const express = require('express');
+const expressAsyncHandler = require('express-async-handler');
+
 const { isAuth } = require('../utils.js');
 const uploadRouter = express.Router();
 // const uuid = require('uuid').v4;
