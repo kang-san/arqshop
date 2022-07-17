@@ -78,7 +78,7 @@ export default function ProductEditScreen(props) {
 
   const uploadFileHandler = async (e) => {
     const formData = new FormData();
-    formData.append('image', e.target.files[0]);
+    formData.append('image', e.target.files[0], 'IMG_00019.jpg');
 
     console.log("파일 append"+ JSON.stringify(e.target.files[0]))
     try {
