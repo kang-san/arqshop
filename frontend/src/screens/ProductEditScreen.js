@@ -80,11 +80,6 @@ export default function ProductEditScreen(props) {
     const formData = new FormData();
     formData.append('image', e.target.files[0], 'IMG_00019.jpg');
 
-    let key = formData.keys()
-    console.log("파일 append key"+ key)
-    let val = formData.values()
-    console.log("파일 append key"+ val)
-
     try {
       // const {data} = await Axios.post(`/api/uploads`, formData, {
       //     headers: {
