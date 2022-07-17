@@ -82,12 +82,13 @@ export default function ProductEditScreen(props) {
 
     console.log("파일 append"+ JSON.stringify(e.target.files[0]))
     try {
-      const {data} = await Axios.post(`/api/uploads`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${userInfo.token}`
-          }}
-      );
+      // const {data} = await Axios.post(`/api/uploads`, formData, {
+      //     headers: {
+      //       'Content-Type': 'multipart/form-data',
+      //       Authorization: `Bearer ${userInfo.token}`
+      //     }}
+      // );
+      const {data} = await Axios.post(`/api/uploads`, formData );
       console.log(" 업로드된 파일 결과 데이터   >>>>>>>>> "+ data)
       setImage(data);
       setLoadingUpload(false);
