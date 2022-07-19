@@ -129,7 +129,7 @@ const data = {
     {
       name: '닥터콜 유닛',
       category: '건강',
-      image: '/images/Dr.Call_item2.jpg',
+      image: '/images/D-unit.jpg',
       price: 390000,
       countInStock: 12,
       brand: 'DrCall',
