@@ -8,7 +8,7 @@ export default function Footer() {
     return (
         <footer className="row center">
             {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
-            <div>All right reserved ARQ</div>
+            <div>All right reserved 7zone</div>
         </footer>
     );
 }

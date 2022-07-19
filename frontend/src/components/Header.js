@@ -18,7 +18,7 @@ export default function () {
         <header className="row">
             <div>
                 <Link className="brand" to="/">
-                    ARQ SHOP
+                    7ZONE SHOP
                 </Link>
             </div>
 
